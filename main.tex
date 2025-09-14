@@ -1,0 +1,161 @@
+% !TEX TS-program = xelatex
+\documentclass[12pt,a4paper]{article}
+\usepackage{fontspec}  
+\usepackage{emoji}
+
+
+
+
+\usepackage{fancyhdr}   % For custom headers and footers
+\pagestyle{fancy}       % Enable fancy page style
+\fancyhf{}  % clears all header and footer fields
+% Header
+\fancyhead[L]{(Unit Field)}       % Left side
+\fancyhead[C]{MathTounsi}     % Center
+\fancyhead[R]{(Unit Title)}      % Right side
+
+% Footer
+
+\fancyfoot[C]{\thepage}               % Page number in center
+
+\renewcommand{\headrulewidth}{0.4pt}  % Thickness of header line
+\renewcommand{\footrulewidth}{0.4pt}  % Thickness of footer line
+
+
+% ---------- FONT ----------
+
+% If fonts are uploaded in a "fonts" folder
+\setmainfont{Poppins}[
+    Path = fonts/, % folder where you put the .ttf files
+    UprightFont = *-Regular.ttf,
+    BoldFont = *-SemiBold.ttf,
+    ItalicFont = *-Italic.ttf,
+    BoldItalicFont = *-BoldItalic.ttf
+]
+
+% ---------- COLORS ----------
+\usepackage{xcolor}
+\definecolor{mathtounsiRed}{HTML}{e63946}
+\definecolor{cherryred}{HTML}{74070e}
+
+\definecolor{turquoise}{HTML}{156874}
+\definecolor{Avocado}{HTML}{568203}
+\definecolor{LemonChiffon}{HTML}{fff8b9}
+\definecolor{classicrose}{HTML}{7a1122}
+\definecolor{butter}{HTML}{ffedcd}
+\definecolor{midnightindigo}{HTML}{212842}
+\definecolor{vanillacream}{HTML}{f0e7d5}
+\definecolor{punchypink}{HTML}{dd3a44}
+\definecolor{creamvanilla}{HTML}{efe6de}
+
+
+% ---------- TITLES ----------
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\color{mathtounsiRed}\normalfont\bfseries\Large}
+  {}{0pt}{}
+
+\titleformat{\subsection}
+  {\color{cherryred}\normalfont\bfseries\large}
+  {}{0pt}{}
+
+% ---------- BOXES ----------
+\usepackage[most]{tcolorbox}
+
+% Walkthrough counter
+\newcounter{walkthroughcounter}
+\newtcolorbox{walkthrough}[1][]{
+  before upper={\refstepcounter{walkthroughcounter}},
+  title={\textcolor{turquoise}{Walkthrough : \thewalkthroughcounter}},
+  fonttitle=\bfseries\large,
+  coltitle=turquoise,
+  colback=turquoise!15!white, % transparent/white background
+  colframe=black, % black border
+  boxrule=0.6pt,
+  arc=6pt, % rounded corners
+  left=10pt, right=10pt, top=8pt, bottom=8pt, % padding
+  colbacktitle=white, % makes the title background transparent
+  borderline={0.6pt}{0pt}{black}, % consistent thin border
+  #1
+}
+
+% Theorem box
+\newtcolorbox{theorem}[1][]{
+  colback=butter!50!white,
+  coltitle=white,
+  colframe=classicrose,
+  title=\textcolor{butter}{Theorem},
+  fonttitle=\bfseries,
+  boxrule=0.6pt,
+  arc=6pt,
+  #1
+}
+
+% Lemma box
+\newtcolorbox{lemma}[1][]{
+  colback=vanillacream!50!white,
+  coltitle=white,
+  colframe=midnightindigo,
+  title=\textcolor{vanillacream}{lemma},
+  fonttitle=\bfseries,
+  boxrule=0.6pt,
+  arc=6pt,
+  #1
+}
+
+% Warning box
+\newtcolorbox{warning}[1][]{
+  colback=creamvanilla!50!white,
+  coltitle=white,
+  colframe=punchypink,
+  title=\textcolor{creamvanilla}{\emoji{1F680} Warning},
+  fonttitle=\bfseries,
+  boxrule=0.6pt,
+  arc=6pt,
+  #1
+}
+
+% ---------- DOCUMENT ----------
+\begin{document}
+
+\section*{Problem of the Day :}
+
+\textbf{Purpose:} Sharpen your skills with a carefully selected daily challenge!  
+Each day, we bring you a new math problem to test your creativity and deepen your understanding.
+
+\subsection*{Example Problem :}
+Solve for $n$:
+\[
+n^2 + 2n + 1 = 2
+\]
+
+\begin{walkthrough}
+Subtract $2$ and solve:
+\[
+n^2 + 2n - 1 = 0
+\]
+\end{walkthrough}
+
+\begin{walkthrough}
+
+\[
+n^2 + 2n - 1 = 0
+\]
+\end{walkthrough}
+
+\begin{theorem}
+If $a^2+b^2=0$ for real $a,b$, then $a=b=0$.
+\end{theorem}
+
+\begin{lemma}
+Always check the domain of your solution before finalizing.
+\end{lemma}
+
+\begin{warning}
+Always check the domain of your solution before finalizing.
+\end{warning}
+
+
+
+\end{document}
