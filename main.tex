@@ -1,22 +1,22 @@
 % !TEX TS-program = xelatex
-\documentclass[12pt,a4paper]{article}
+\documentclass[10pt,a4paper]{article}
+\usepackage[a4paper, total={6in,9.1in }]{geometry}
 \usepackage{fontspec}  
+
+\usepackage{caption}
 \usepackage{emoji}
-
-
-
-
 \usepackage{fancyhdr}   % For custom headers and footers
 \pagestyle{fancy}       % Enable fancy page style
 \fancyhf{}  % clears all header and footer fields
 % Header
-\fancyhead[L]{(Unit Field)}       % Left side
+\fancyhead[L]{Combinatorics}       % Left side
 \fancyhead[C]{MathTounsi}     % Center
-\fancyhead[R]{(Unit Title)}      % Right side
+\fancyhead[R]{The Pigeonhole principle }      % Right side
 
 % Footer
-
-\fancyfoot[C]{\thepage}               % Page number in center
+\setlength{\footskip}{30pt}
+\fancyfoot[L]{\includegraphics[height=20pt]{Logo.png}}  % left: image
+\fancyfoot[R]{\thepage}
 
 \renewcommand{\headrulewidth}{0.4pt}  % Thickness of header line
 \renewcommand{\footrulewidth}{0.4pt}  % Thickness of footer line
@@ -35,9 +35,9 @@
 
 % ---------- COLORS ----------
 \usepackage{xcolor}
+\definecolor{burgundy}{RGB}{128,0,32}
 \definecolor{mathtounsiRed}{HTML}{e63946}
 \definecolor{cherryred}{HTML}{74070e}
-
 \definecolor{turquoise}{HTML}{156874}
 \definecolor{Avocado}{HTML}{568203}
 \definecolor{LemonChiffon}{HTML}{fff8b9}
@@ -50,24 +50,33 @@
 
 
 % ---------- TITLES ----------
+\usepackage{hyperref}
 \usepackage{titlesec}
-
-\titleformat{\section}
+\setcounter{secnumdepth}{2} 
+\titleformat{\section}[hang]
   {\color{mathtounsiRed}\normalfont\bfseries\Large}
-  {}{0pt}{}
+  {\thesection}{0.25em}{}
 
-\titleformat{\subsection}
+\titleformat{\subsection}[hang]
   {\color{cherryred}\normalfont\bfseries\large}
-  {}{0pt}{}
+  {\thesubsection}{0.25em}{}
+
+% ---------- Links ----------
+\hypersetup{
+    colorlinks=true,
+    urlcolor=burgundy,
+    linkcolor=burgundy, % default internal links
+}
 
 % ---------- BOXES ----------
 \usepackage[most]{tcolorbox}
 
 % Walkthrough counter
 \newcounter{walkthroughcounter}
+\setcounter{walkthroughcounter}{1}
 \newtcolorbox{walkthrough}[1][]{
   before upper={\refstepcounter{walkthroughcounter}},
-  title={\textcolor{turquoise}{Walkthrough : \thewalkthroughcounter}},
+  title={\textcolor{turquoise}{ Walkthrough : \thewalkthroughcounter}},
   fonttitle=\bfseries\large,
   coltitle=turquoise,
   colback=turquoise!15!white, % transparent/white background
@@ -77,6 +86,8 @@
   left=10pt, right=10pt, top=8pt, bottom=8pt, % padding
   colbacktitle=white, % makes the title background transparent
   borderline={0.6pt}{0pt}{black}, % consistent thin border
+  before=\vspace{15pt}, % space above the box
+  after=\vspace{10pt},  % space below the box
   #1
 }
 
@@ -85,12 +96,30 @@
   colback=butter!50!white,
   coltitle=white,
   colframe=classicrose,
-  title=\textcolor{butter}{Theorem},
+  title=\textcolor{butter}{Theorem\ifstrempty{#1}{}{ : #1}},
   fonttitle=\bfseries,
   boxrule=0.6pt,
   arc=6pt,
+  before=\vspace{15pt}, % space above the box
+  after=\vspace{10pt},  % space below the box
+}
+
+% remark box
+\tcbuselibrary{skins}
+
+\newtcolorbox{remarkbox}[1][]{%
+  enhanced,
+  colback=gray!10,              % light gray background
+  borderline west={2pt}{0pt}{darkgray}, % dark gray left border
+  boxrule=0pt,                  % no frame around
+  sharp corners,
+  boxsep=4pt,                   % padding inside
+  before upper=\textbf{Remark}\ , % bold "Remark" at start
+  after upper=\ ,               % spacing after text
+  fontupper=\normalfont,        % normal font inside
   #1
 }
+
 
 % Lemma box
 \newtcolorbox{lemma}[1][]{
@@ -109,53 +138,63 @@
   colback=creamvanilla!50!white,
   coltitle=white,
   colframe=punchypink,
-  title=\textcolor{creamvanilla}{\emoji{1F680} Warning},
+  title=\textcolor{creamvanilla}{ Warning},
   fonttitle=\bfseries,
   boxrule=0.6pt,
   arc=6pt,
   #1
 }
 
+%------------ Title ------------
+\title{The Pigeonhole principle}      % Document title
+\author{Oussema Soussi \& Aws Dhahri}                 % Author name
+\date{\today}                     % Date (use \today for current date)
+
+
 % ---------- DOCUMENT ----------
 \begin{document}
+\maketitle
+\hypersetup{linkcolor=black}
+\tableofcontents
+\newpage
 
-\section*{Problem of the Day :}
-
-\textbf{Purpose:} Sharpen your skills with a carefully selected daily challenge!  
-Each day, we bring you a new math problem to test your creativity and deepen your understanding.
-
-\subsection*{Example Problem :}
-Solve for $n$:
-\[
-n^2 + 2n + 1 = 2
-\]
-
+\section{Section A}
+\subsection{subsection A1}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+\subsection{subsection A2}
+\begin{center}
 \begin{walkthrough}
-Subtract $2$ and solve:
-\[
-n^2 + 2n - 1 = 0
-\]
+    Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.
 \end{walkthrough}
-
-\begin{walkthrough}
-
-\[
-n^2 + 2n - 1 = 0
-\]
-\end{walkthrough}
-
-\begin{theorem}
-If $a^2+b^2=0$ for real $a,b$, then $a=b=0$.
+\end{center}
+\subsection{subsection A3}
+\begin{center}
+\begin{theorem}[Theorem's Title]
+    Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.
 \end{theorem}
-
+\end{center}
+\section{Section B}
+\subsection{subsection B1}
+\begin{center}
+\begin{remarkbox}
+    Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.
+\end{remarkbox}
+\end{center}
+\subsection{subsection B2}
+\begin{center}
 \begin{lemma}
-Always check the domain of your solution before finalizing.
+    Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.
 \end{lemma}
-
+\end{center}
+\subsection{subsection B3}
+\begin{center}
 \begin{warning}
-Always check the domain of your solution before finalizing.
+    Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus.
 \end{warning}
-
-
-
+\end{center}
 \end{document}
+
+
+
+%% add walkthroughs
+%% add at most ceiling n/k
